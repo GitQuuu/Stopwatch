@@ -5,22 +5,22 @@ namespace Stopwatch
 {
     public class Stopwatch
     {
-        public enum WatchState
+        public  enum WatchState
         {
             Start = 1,
             Stop = 2
         }
-       
-        public DateTime TimeStart { get; set; }
-        public DateTime TimeStop { get; set; }
 
-        public void Start()
+        public static DateTime TimeStart { get; set; }
+        public static DateTime TimeStop { get; set; }
+
+        public static void Start()
         {
             TimeStart = DateTime.Now;
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");
         }
 
-        public void Stop()
+        public static void Stop()
         {
             TimeStop = DateTime.Now;
             Console.WriteLine($"Stopwatch stop at {TimeStop}\n");

@@ -12,7 +12,7 @@ namespace Stopwatch
     {
         static void Main(string[] args)
         {
-            var stopwatch = new Stopwatch();
+            
 
             Console.WriteLine("Press 1 to start and 2 to stop watch");
 
@@ -22,16 +22,16 @@ namespace Stopwatch
                 switch (int.Parse(Console.ReadLine()))
                 {
                     case (int)Stopwatch.WatchState.Start:
-                        stopwatch.Start();
+                        Stopwatch.Start();
                         break;
                     case (int)Stopwatch.WatchState.Stop:
-                        stopwatch.Stop();
+                        Stopwatch.Stop();
                         loopState = false;
                         break;
                 }
             } while (loopState);
 
-            Console.WriteLine($"Duration of stopwatch is {stopwatch.TimeStop - stopwatch.TimeStart} seconds ");
+            Console.WriteLine($"Duration of stopwatch is {Stopwatch.TimeStop - Stopwatch.TimeStart} seconds ");
 
            
                 
