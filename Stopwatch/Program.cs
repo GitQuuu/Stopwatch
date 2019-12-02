@@ -16,18 +16,35 @@ namespace Stopwatch
 
             Console.WriteLine("Press 1 to start and 2 to stop watch");
 
-            if (Console.ReadLine() == "1")
+            bool loopState = true;
+            do
             {
-                stopwatch.Start();
-            }
-            
-            
-            Console.WriteLine("Hit 2 to stop watch");
+                switch (int.Parse(Console.ReadLine()))
+                {
+                    case (int)Stopwatch.WatchState.Start:
+                        stopwatch.Start();
+                        break;
+                    case (int)Stopwatch.WatchState.Stop:
+                        stopwatch.Stop();
+                        loopState = false;
+                        break;
+                }
+            } while (loopState);
 
-            if (Console.ReadLine() == "2")
-            {
-                stopwatch.Stop();
-            }
+           
+                
+            //if (Console.ReadLine() == "1")   
+            //{
+            //    stopwatch.Start();
+            //}
+            
+            
+            //Console.WriteLine("Hit 2 to stop watch");
+
+            //if (Console.ReadLine() == "2")
+            //{
+            //    stopwatch.Stop();
+            //}
             
 
             

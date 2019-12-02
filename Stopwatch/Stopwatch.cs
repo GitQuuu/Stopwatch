@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Stopwatch
 {
@@ -6,8 +7,8 @@ namespace Stopwatch
     {
         public enum WatchState
         {
-            Start,
-            Stop
+            Start = 1,
+            Stop = 2
         }
        
         public DateTime TimeStart { get; set; }
