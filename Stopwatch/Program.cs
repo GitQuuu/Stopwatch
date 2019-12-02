@@ -31,6 +31,8 @@ namespace Stopwatch
                 }
             } while (loopState);
 
+            Console.WriteLine($"Duration of stopwatch is {stopwatch.TimeStop - stopwatch.TimeStart} seconds ");
+
            
                 
             //if (Console.ReadLine() == "1")   
