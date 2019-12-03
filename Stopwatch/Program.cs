@@ -12,26 +12,42 @@ namespace Stopwatch
     {
         static void Main(string[] args)
         {
-            
-
-            Console.WriteLine("Press 1 to start and 2 to stop watch");
-
-            bool loopState = true;
-            do
+            bool exitOrContinue = true;
+            while (exitOrContinue)
             {
-                switch (int.Parse(Console.ReadLine()))
-                {
-                    case (int)Stopwatch.WatchState.Start:
-                        Stopwatch.Start();
-                        break;
-                    case (int)Stopwatch.WatchState.Stop:
-                        Stopwatch.Stop();
-                        loopState = false;
-                        break;
-                }
-            } while (loopState);
+                Console.WriteLine("Press 1 to start and 2 to stop watch");
 
-            Console.WriteLine($"Duration of stopwatch is {Stopwatch.Duration.Seconds} seconds ");
+                bool loopState = true;
+                do
+                {
+                    switch (int.Parse(Console.ReadLine()))
+                    {
+                        case (int)Stopwatch.WatchState.Start:
+                            Console.Clear();
+                            Stopwatch.Start();
+                            continue;
+                        case (int)Stopwatch.WatchState.Stop:
+                            Stopwatch.Stop();
+                            loopState = false;
+                            break;
+                    }
+                } while (loopState);
+
+                Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
+
+                Console.WriteLine("Continue program y/n?");
+                if (Console.ReadLine() != "n")
+                {
+                    exitOrContinue = true;
+                }
+                else
+                {
+                    exitOrContinue = false;
+
+                    Console.WriteLine("Thanks for using Stopwatch");
+                }
+            }
+            
 
    
             Console.ReadLine();

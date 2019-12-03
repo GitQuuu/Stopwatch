@@ -12,9 +12,9 @@ namespace Stopwatch
             Stop = 2
         }
 
-        public static TimeSpan Duration { get; set; }   
-        public static DateTime TimeStart { get; set; }
-        public static DateTime TimeStop { get; set; }
+        public static TimeSpan Duration { get; private set; }   
+        public static DateTime TimeStart { get; private set; }
+        public static DateTime TimeStop { get; private set; }
 
         public static void Start()
         {
