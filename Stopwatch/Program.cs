@@ -20,17 +20,21 @@ namespace Stopwatch
                 bool loopState = true;
                 do
                 {
-                    switch (int.Parse(Console.ReadLine()))
+                    switch (int.TryParse(Console.ReadLine(), out int value) ? value: 0)
                     {
                         case (int)Stopwatch.WatchState.Start:
                             Console.Clear();
                             Stopwatch.Start();
                             continue;
-                        case (int)Stopwatch.WatchState.Stop:
+                        case (int) Stopwatch.WatchState.Stop:
                             Stopwatch.Stop();
                             loopState = false;
                             break;
+                        default:
+                            Console.WriteLine("Please try again");
+                            break;
                     }
+
                 } while (loopState);
 
                 Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
