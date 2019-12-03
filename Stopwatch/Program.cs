@@ -12,15 +12,16 @@ namespace Stopwatch
     {
         static void Main(string[] args)
         {
-            bool exitOrContinue = true;
-            while (exitOrContinue)
+            bool StopwatchLoop = true;
+
+            while (StopwatchLoop == true)
+                
             {
+                bool exitOrContinue = true;
                 Console.WriteLine("Press 1 to start and 2 to stop watch");
 
-                bool loopState = true;
-                do
-                {
-                    switch (int.TryParse(Console.ReadLine(), out int value) ? value: 0)
+
+                    switch (int.TryParse(Console.ReadLine(), out int value) ? value : 0)
                     {
                         case (int)Stopwatch.WatchState.Start:
                             Console.Clear();
@@ -28,32 +29,34 @@ namespace Stopwatch
                             continue;
                         case (int) Stopwatch.WatchState.Stop:
                             Stopwatch.Stop();
-                            loopState = false;
                             break;
                         default:
                             Console.WriteLine("Please try again");
-                            break;
+                            continue;
                     }
 
-                } while (loopState);
+                while (exitOrContinue) { 
 
-                Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
+                    Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
 
-                Console.WriteLine("Continue program y/n?");
-                if (Console.ReadLine() != "n")
-                {
-                    exitOrContinue = true;
-                }
-                else
-                {
-                    exitOrContinue = false;
+              
+                    Console.WriteLine("Continue program y/n?");
+                    if (Console.ReadLine() == "y" )
+                    {
+                        StopwatchLoop = true;
+                        exitOrContinue = false;
+                    }
+                    else
+                    {
+                        StopwatchLoop = false;
+                        exitOrContinue = false;
 
-                    Console.WriteLine("Thanks for using Stopwatch");
+                        Console.WriteLine("Thanks for using Stopwatch");
+                    }
                 }
             }
-            
 
-   
+
             Console.ReadLine();
         }
     }

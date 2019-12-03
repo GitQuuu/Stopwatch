@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Stopwatch
 {
-    public class Stopwatch
+    public static class Stopwatch
     {
 
         public  enum WatchState
@@ -12,7 +12,7 @@ namespace Stopwatch
             Stop = 2
         }
 
-        public static TimeSpan Duration { get; private set; }   
+        public static  TimeSpan Duration { get; private set; }   
         public static DateTime TimeStart { get; private set; }
         public static DateTime TimeStop { get; private set; }
 
