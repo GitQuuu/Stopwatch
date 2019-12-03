@@ -31,27 +31,9 @@ namespace Stopwatch
                 }
             } while (loopState);
 
-            Console.WriteLine($"Duration of stopwatch is {Stopwatch.TimeStop - Stopwatch.TimeStart} seconds ");
+            Console.WriteLine($"Duration of stopwatch is {Stopwatch.Duration.Seconds} seconds ");
 
-           
-                
-            //if (Console.ReadLine() == "1")   
-            //{
-            //    stopwatch.Start();
-            //}
-            
-            
-            //Console.WriteLine("Hit 2 to stop watch");
-
-            //if (Console.ReadLine() == "2")
-            //{
-            //    stopwatch.Stop();
-            //}
-            
-
-            
-
-
+   
             Console.ReadLine();
         }
     }
