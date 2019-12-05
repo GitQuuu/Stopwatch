@@ -45,14 +45,18 @@ namespace Stopwatch
                         switch (char.TryParse(Console.ReadLine(),out char yesOrNo) ? yesOrNo : default )
                         {
                             case (char)Stopwatch.Choices.Yes:
+
                                 doubleCheckExit = false;
                                 stopwatchLoop = true;
                                 exitOrContinue = false;
+
                                 break;
                             case (char)Stopwatch.Choices.No:
+
                                 doubleCheckExit = false;
                                 exitOrContinue = false;
                                 stopwatchLoop = false;
+
                                 break;
                             default:
                                 Console.Write("Please select either y or n to continue program\n");
