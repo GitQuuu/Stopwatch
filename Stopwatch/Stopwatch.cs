@@ -41,6 +41,7 @@ namespace Stopwatch
                         continue;
                     case (int)Stopwatch.WatchState.Off:
                         Stopwatch.StopTimer();
+                        Console.Write("Are you sure? ");
                         LoopState = false;
                         break;
                     default:
@@ -59,7 +60,7 @@ namespace Stopwatch
                 bool inputCheck = true;
                 while (inputCheck)
                 {
-                    Console.WriteLine(actions);
+                    Console.Write(actions);
                     switch (char.TryParse(Console.ReadLine(), out char yesOrNo) ? yesOrNo : default)
                     {
                         case (char)Stopwatch.Choices.Yes:
@@ -71,8 +72,10 @@ namespace Stopwatch
                             break;
                         case (char)Stopwatch.Choices.No:
 
+                           
                             inputCheck = false;
                             powerOffState = false;
+                           
                             break;
                         default:
                             Console.Write("Please select either y or n to continue program\n");
