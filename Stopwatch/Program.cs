@@ -12,9 +12,9 @@ namespace Stopwatch
     {
         static void Main(string[] args)
         {
-            bool StopwatchLoop = true;
+            bool stopwatchLoop = true;
 
-            while (StopwatchLoop == true)
+            while (stopwatchLoop == true)
                 
             {
                 bool exitOrContinue = true;
@@ -37,27 +37,21 @@ namespace Stopwatch
 
                 while (exitOrContinue) { 
 
-                    Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
-
-              
                     Console.WriteLine("Continue program y/n?");
                     if (Console.ReadLine() == "y" )
                     {
-                        StopwatchLoop = true;
+                        stopwatchLoop = true;
                         exitOrContinue = false;
                     }
                     else
                     {
-                        StopwatchLoop = false;
+                        stopwatchLoop = false;
                         exitOrContinue = false;
 
-                        Console.WriteLine("Thanks for using Stopwatch");
                     }
                 }
             }
 
-
-            Console.ReadLine();
         }
     }
 }

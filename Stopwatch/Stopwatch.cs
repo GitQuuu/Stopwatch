@@ -20,6 +20,26 @@ namespace Stopwatch
         {
             TimeStart = DateTime.Now;
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");
+
+            bool preventOverlap = true;
+            do
+            {
+                Console.WriteLine("Press 2 to stop and display the runtime");
+
+                if (Console.ReadLine() == "2")
+                {
+                    Stop();
+                    preventOverlap = false;
+
+                    Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
+                }
+                else
+                {
+                    Console.WriteLine("Please stop the watch before starting a new instance");
+
+                    preventOverlap = true;
+                }
+            } while (preventOverlap);
         }
 
         public static void Stop()
