@@ -23,32 +23,44 @@ namespace Stopwatch
 
                     switch (int.TryParse(Console.ReadLine(), out int value) ? value : 0)
                     {
-                        case (int)Stopwatch.WatchState.Start:
+                        case (int)Stopwatch.WatchState.On:
                             Console.Clear();
-                            Stopwatch.Start();
+                            Stopwatch.StartTimer();
                             continue;
-                        case (int) Stopwatch.WatchState.Stop:
-                            Stopwatch.Stop();
+                        case (int) Stopwatch.WatchState.Off:
+                            Stopwatch.StopTimer();
                             break;
                         default:
                             Console.WriteLine("Please try again");
                             continue;
                     }
 
-                while (exitOrContinue) { 
-
+                while (exitOrContinue)
+                {
                     Console.WriteLine("Continue program y/n?");
-                    if (Console.ReadLine() == "y" )
-                    {
-                        stopwatchLoop = true;
-                        exitOrContinue = false;
-                    }
-                    else
-                    {
-                        stopwatchLoop = false;
-                        exitOrContinue = false;
 
+                    bool doubleCheckExit = true;
+                    while (doubleCheckExit)
+                    {
+                        switch (char.TryParse(Console.ReadLine(),out char yesOrNo) ? yesOrNo : default )
+                        {
+                            case (char)Stopwatch.Choices.Yes:
+                                doubleCheckExit = false;
+                                stopwatchLoop = true;
+                                exitOrContinue = false;
+                                break;
+                            case (char)Stopwatch.Choices.No:
+                                doubleCheckExit = false;
+                                exitOrContinue = false;
+                                stopwatchLoop = false;
+                                break;
+                            default:
+                                Console.Write("Please select either y or n to continue program\n");
+                                break;
+                        }
+                      
                     }
+                    
                 }
             }
 

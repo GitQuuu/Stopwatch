@@ -1,22 +1,28 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Stopwatch
 {
     public static class Stopwatch
     {
+        public enum Choices
+        {
+            Yes = 'y',
+            No = 'n'
+        }   
 
         public  enum WatchState
         {
-            Start = 1,
-            Stop = 2
+            On = 1,
+            Off = 2
         }
 
-        public static  TimeSpan Duration { get; private set; }   
+        public static TimeSpan Duration { get; private set; }   
         public static DateTime TimeStart { get; private set; }
         public static DateTime TimeStop { get; private set; }
 
-        public static void Start()
+        public static void StartTimer()
         {
             TimeStart = DateTime.Now;
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");
@@ -28,7 +34,7 @@ namespace Stopwatch
 
                 if (Console.ReadLine() == "2")
                 {
-                    Stop();
+                    StopTimer();
                     preventOverlap = false;
 
                     Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
@@ -42,7 +48,7 @@ namespace Stopwatch
             } while (preventOverlap);
         }
 
-        public static void Stop()
+        public static void StopTimer()
         {
             TimeStop = DateTime.Now;
             Duration = TimeStop - TimeStart;   
