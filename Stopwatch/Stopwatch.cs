@@ -96,7 +96,9 @@ namespace Stopwatch
             bool preventOverlap = true;
             do
             {
-                Console.WriteLine("Press 2 to stop and display the runtime");
+                
+                Console.WriteLine("Press 2 to stop and display the total runtime");
+                Stopwatch.LiveRunTime();
 
                 if (Console.ReadLine() == "2")
                 {
@@ -111,6 +113,20 @@ namespace Stopwatch
                     preventOverlap = true;
                 }
             } while (preventOverlap);
+        }
+
+        public static void LiveRunTime()
+        {
+
+                for (int liveDuration = 1; liveDuration >= 0; liveDuration++)
+                {
+                    Console.SetCursorPosition(0, 3);
+                    Console.Write($"Live runtime {liveDuration}");
+                    System.Threading.Thread.Sleep(1000);
+
+                }
+
+            
         }
 
         public static void StopTimer()
