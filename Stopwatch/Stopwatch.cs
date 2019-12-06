@@ -2,20 +2,19 @@
 using System.ComponentModel;
 using System.Dynamic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace Stopwatch
 {
     public class Stopwatch
     {
-        private static bool _loopState;
-
         public enum Choices
         {
             Yes = 'y',
             No = 'n'
         }   
 
-        public  enum WatchState
+        public  enum PowerState
         {
             On = 1,
             Off = 2
@@ -26,8 +25,9 @@ namespace Stopwatch
         public static DateTime TimeStop { get; private set; }
 
 
-        public static void PowerOn(string introduction)
+        public  void PowerOn(string introduction)
         {
+            Stopwatch stopwatch = new Stopwatch();
             bool LoopState = true;
             while (LoopState)
             {
@@ -35,11 +35,11 @@ namespace Stopwatch
 
                 switch (int.TryParse(Console.ReadLine(), out int value) ? value : 0)
                 {
-                    case (int)Stopwatch.WatchState.On:
+                    case (int)Stopwatch.PowerState.On:
                         Console.Clear();
-                        Stopwatch.StartTimer();
+                        stopwatch.StartTimer();
                         continue;
-                    case (int)Stopwatch.WatchState.Off:
+                    case (int)Stopwatch.PowerState.Off:
                         Stopwatch.StopTimer();
                         Console.Write("Are you sure? ");
                         LoopState = false;
@@ -52,7 +52,7 @@ namespace Stopwatch
             }
         }
 
-        public static void PowerOff(string actions)
+        public  void PowerOff(string actions)
         {
             bool powerOffState = true;
             while (powerOffState)
@@ -88,17 +88,17 @@ namespace Stopwatch
         }
 
 
-        public static void StartTimer()
+        public  void StartTimer()
         {
+            Stopwatch stopwatch = new Stopwatch();
+
             TimeStart = DateTime.Now;
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");
 
             bool preventOverlap = true;
             do
             {
-                
-                Console.WriteLine("Press 2 to stop and display the total runtime");
-                Stopwatch.LiveRunTime();
+                stopwatch.Runtime();
 
                 if (Console.ReadLine() == "2")
                 {
@@ -109,26 +109,27 @@ namespace Stopwatch
                 else
                 {
                     Console.WriteLine("Please stop the watch before starting a new instance");
-
                     preventOverlap = true;
                 }
             } while (preventOverlap);
         }
 
-        public static void LiveRunTime()
+        public  void Runtime()
         {
-
-                for (int liveDuration = 1; liveDuration >= 0; liveDuration++)
-                {
-                    Console.SetCursorPosition(0, 3);
-                    Console.Write($"Live runtime {liveDuration}");
-                    System.Threading.Thread.Sleep(1000);
-
-                }
+            Console.WriteLine("Press any key to start live runtime");
+            string startLiveTimer = Console.ReadLine();
 
             
+                for (int timer = 1; timer > 0; timer++)
+                {
+                    Console.SetCursorPosition(0, 3);
+                    Console.Write($"Live runtime {timer}");
+                    Thread.Sleep(1000);
+
+                }
         }
 
+        public delegate void ThreadStart();
         public static void StopTimer()
         {
             
