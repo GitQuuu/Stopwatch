@@ -63,14 +63,14 @@ namespace Stopwatch
                     Console.Write(actions);
                     switch (char.TryParse(Console.ReadLine(), out char yesOrNo) ? yesOrNo : default)
                     {
-                        case (char)Stopwatch.Choices.Yes:
+                        case (char)Stopwatch.Choices.No:
 
                             inputCheck = false;
                             powerOffState = true;
                             PowerOn("Press 1 to start again and 2 to end program");
 
                             break;
-                        case (char)Stopwatch.Choices.No:
+                        case (char)Stopwatch.Choices.Yes:
 
                            
                             inputCheck = false;
@@ -116,17 +116,22 @@ namespace Stopwatch
 
         public  void Runtime()
         {
-            Console.WriteLine("Press any key to start live runtime");
-            string startLiveTimer = Console.ReadLine();
+            bool loopstate = true;
+            int timer = 0;
 
-            
-                for (int timer = 1; timer > 0; timer++)
+
+            Console.WriteLine("Press 2 to stop the live runtime");
+            while (loopstate)
+            {
+                Console.SetCursorPosition(0, 3);
+                Console.Write($"Live runtime {timer++}");
+                Thread.Sleep(1000);
+
+                if (Console.KeyAvailable)
                 {
-                    Console.SetCursorPosition(0, 3);
-                    Console.Write($"Live runtime {timer}");
-                    Thread.Sleep(1000);
-
+                    loopstate = false;
                 }
+            }
         }
 
         public delegate void ThreadStart();
