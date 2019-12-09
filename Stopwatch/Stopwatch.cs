@@ -116,22 +116,14 @@ namespace Stopwatch
 
         public  void Runtime()
         {
-            bool loopstate = true;
-            int timer = 0;
 
+            //for (int liveRuntime = 0; liveRuntime < 1; liveRuntime++)
+            //{
+            //    Console.SetCursorPosition(0, 3);
+            //    Console.Write($"Live runtime {liveRuntime}");
+            //    Thread.Sleep(1000);
+            //}
 
-            Console.WriteLine("Press 2 to stop the live runtime");
-            while (loopstate)
-            {
-                Console.SetCursorPosition(0, 3);
-                Console.Write($"Live runtime {timer++}");
-                Thread.Sleep(1000);
-
-                if (Console.KeyAvailable)
-                {
-                    loopstate = false;
-                }
-            }
         }
 
         public delegate void ThreadStart();
@@ -139,8 +131,10 @@ namespace Stopwatch
         {
             
             TimeStop = DateTime.Now;
-            Duration = TimeStop - TimeStart;   
-            Console.WriteLine($"Stopwatch stop at {TimeStop}\n");
+            Duration = TimeStop - TimeStart;
+            TimeSpan elapsed = DateTime.Parse(TimeStop.ToString()).Subtract(DateTime.Parse(TimeStart.ToString()));
+            Console.WriteLine($"Stopwatch stop at {TimeStop} elapsed time {elapsed}\n");
+           
         }
     }
 }
