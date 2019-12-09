@@ -88,20 +88,26 @@ namespace Stopwatch
         }
 
 
-        public  void StartTimer()
+        public void StartTimer()
         {
             Stopwatch stopwatch = new Stopwatch();
 
             TimeStart = DateTime.Now;
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");
 
+           
+            //Thread secondThread = new Thread(new System.Threading.ThreadStart(Stopwatch.Runtime));
+            //secondThread.Start();
+            //Thread.Sleep(1000);
+            
+            Runtime();
+
             bool preventOverlap = true;
             do
             {
-                stopwatch.Runtime();
-
                 if (Console.ReadLine() == "2")
                 {
+                    //secondThread.Join();
                     StopTimer();
                     Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
                     preventOverlap = false;
@@ -114,22 +120,31 @@ namespace Stopwatch
             } while (preventOverlap);
         }
 
-        public  void Runtime()
+        public static void Runtime()
         {
+            //ConsoleKeyInfo q;
+            
+                for (int liveRuntime = 1; liveRuntime > 0; liveRuntime++)
+                {
+                    Console.SetCursorPosition(0, 2);
+                    Console.Write($"Live runtime 2 thread: {liveRuntime} ");
+                    Thread.Sleep(1000);
 
-            //for (int liveRuntime = 0; liveRuntime < 1; liveRuntime++)
-            //{
-            //    Console.SetCursorPosition(0, 3);
-            //    Console.Write($"Live runtime {liveRuntime}");
-            //    Thread.Sleep(1000);
-            //}
+                    if (Console.KeyAvailable)
+                    {
+                        liveRuntime = 0;
+                        break;
+                    }
+                }
+            
+           
 
         }
 
         public delegate void ThreadStart();
         public static void StopTimer()
         {
-            
+            Console.Clear();
             TimeStop = DateTime.Now;
             Duration = TimeStop - TimeStart;
             TimeSpan elapsed = DateTime.Parse(TimeStop.ToString()).Subtract(DateTime.Parse(TimeStart.ToString()));
