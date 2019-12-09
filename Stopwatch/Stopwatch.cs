@@ -28,21 +28,20 @@ namespace Stopwatch
         public  void PowerOn(string introduction)
         {
             Stopwatch stopwatch = new Stopwatch();
-            bool LoopState = true;
-            while (LoopState)
+            bool loopState = true;
+            while (loopState)
             {
                 Console.WriteLine(introduction);
 
                 switch (int.TryParse(Console.ReadLine(), out int value) ? value : 0)
                 {
                     case (int)Stopwatch.PowerState.On:
-                        Console.Clear();
                         stopwatch.StartTimer();
                         continue;
                     case (int)Stopwatch.PowerState.Off:
-                        Stopwatch.StopTimer();
+                        stopwatch.StopTimer();
                         Console.Write("Are you sure? ");
-                        LoopState = false;
+                        loopState = false;
                         break;
                     default:
                         Console.WriteLine("Choose either 1 or 2");
@@ -94,13 +93,13 @@ namespace Stopwatch
 
             TimeStart = DateTime.Now;
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");
+            Runtime();
 
-           
+
             //Thread secondThread = new Thread(new System.Threading.ThreadStart(Stopwatch.Runtime));
             //secondThread.Start();
             //Thread.Sleep(1000);
-            
-            Runtime();
+
 
             bool preventOverlap = true;
             do
@@ -120,31 +119,25 @@ namespace Stopwatch
             } while (preventOverlap);
         }
 
-        public static void Runtime()
+        public void Runtime()
         {
-            //ConsoleKeyInfo q;
             
-                for (int liveRuntime = 1; liveRuntime > 0; liveRuntime++)
+            for (int liveRuntime = 1; liveRuntime > 0; liveRuntime++)
+            {
+                Console.SetCursorPosition(0, 3);
+                Console.Write($"Live runtime 2 thread: {liveRuntime} \n");
+                Thread.Sleep(1000);
+
+                if (Console.KeyAvailable)
                 {
-                    Console.SetCursorPosition(0, 2);
-                    Console.Write($"Live runtime 2 thread: {liveRuntime} ");
-                    Thread.Sleep(1000);
-
-                    if (Console.KeyAvailable)
-                    {
-                        liveRuntime = 0;
-                        break;
-                    }
+                    break;
                 }
-            
-           
-
+            }
         }
 
         public delegate void ThreadStart();
-        public static void StopTimer()
+        public void StopTimer()
         {
-            Console.Clear();
             TimeStop = DateTime.Now;
             Duration = TimeStop - TimeStart;
             TimeSpan elapsed = DateTime.Parse(TimeStop.ToString()).Subtract(DateTime.Parse(TimeStart.ToString()));
