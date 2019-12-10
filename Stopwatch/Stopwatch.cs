@@ -6,39 +6,35 @@ using System.Threading;
 
 namespace Stopwatch
 {
-    public class Stopwatch
+    public class StopWatch
     {
-        public enum Choices
-        {
-            Yes = 'y',
-            No = 'n'
-        }   
-
-        public  enum PowerState
-        {
-            On = 1,
-            Off = 2
-        }
 
         public static TimeSpan Duration { get; private set; }   
         public static DateTime TimeStart { get; private set; }
         public static DateTime TimeStop { get; private set; }
 
-
-        public  void PowerOn(string introduction)
+        // A method to instantiating new objects of the StopWatch class
+        public StopWatch CreateStopwatch()
         {
-            Stopwatch stopwatch = new Stopwatch();
+            StopWatch stopwatchObject = new StopWatch();
+
+            return stopwatchObject;
+        }
+
+        public void PowerOn()
+        {
+            StopWatch stopwatch = new StopWatch();
             bool loopState = true;
             while (loopState)
             {
-                Console.WriteLine(introduction);
+                Console.WriteLine();
 
                 switch (int.TryParse(Console.ReadLine(), out int value) ? value : 0)
                 {
-                    case (int)Stopwatch.PowerState.On:
-                        stopwatch.StartTimer();
+                    case (int)Menu.PowerState.On:
+                        //stopwatch.StartTimer();
                         continue;
-                    case (int)Stopwatch.PowerState.Off:
+                    case (int)Menu.PowerState.Off:
                         stopwatch.StopTimer();
                         Console.Write("Are you sure? ");
                         loopState = false;
@@ -62,14 +58,14 @@ namespace Stopwatch
                     Console.Write(actions);
                     switch (char.TryParse(Console.ReadLine(), out char yesOrNo) ? yesOrNo : default)
                     {
-                        case (char)Stopwatch.Choices.No:
+                        case (char)Menu.Choices.No:
 
                             inputCheck = false;
                             powerOffState = true;
                             PowerOn("Press 1 to start again and 2 to end program");
 
                             break;
-                        case (char)Stopwatch.Choices.Yes:
+                        case (char)Menu.Choices.Yes:
 
                            
                             inputCheck = false;
@@ -89,7 +85,7 @@ namespace Stopwatch
 
         public void StartTimer()
         {
-            Stopwatch stopwatch = new Stopwatch();
+            StopWatch stopwatch = new StopWatch();
 
             TimeStart = DateTime.Now;
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");
@@ -108,7 +104,7 @@ namespace Stopwatch
                 {
                     //secondThread.Join();
                     StopTimer();
-                    Console.WriteLine($"Runtime is {Stopwatch.Duration.TotalSeconds} seconds \n");
+                    Console.WriteLine($"Runtime is {StopWatch.Duration.TotalSeconds} seconds \n");
                     preventOverlap = false;
                 }
                 else

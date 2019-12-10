@@ -13,11 +13,7 @@ namespace Stopwatch
     {
         static void Main(string[] args)
         {
-            Stopwatch stopwatch = new Stopwatch();
-
-            stopwatch.PowerOn("Press 1 to start and 2 to stop the Stopwatch");
-           
-            stopwatch.PowerOff("Exit program y/n?");
+            
 
 
         }
