@@ -22,31 +22,7 @@ namespace StopWatch
         }
 
         // method to use the object 
-        public static void PowerOn(string question,StopWatch stopwatch)
-        {
-
-            bool loopState = true;
-            while (loopState)
-            {
-                Console.WriteLine(question);
-
-                switch (int.TryParse(Console.ReadLine(), out int value) ? value : 0)
-                {
-                    case (int)Menu.PowerState.On:
-                        stopwatch.StartTimer();
-                        continue;
-                    case (int)Menu.PowerState.Off:
-                        stopwatch.StopTimer();
-                        Console.Write("Are you sure? ");
-                        loopState = false;
-                        break;
-                    default:
-                        Console.WriteLine("Choose either 1 or 2");
-                        continue;
-                }
-
-            }
-        }
+        
 
         public  void PowerOff(string actions)
         {
@@ -86,7 +62,6 @@ namespace StopWatch
 
         public void StartTimer()
         {
-            StopWatch stopwatch = new StopWatch();
 
             TimeStart = DateTime.Now;
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");

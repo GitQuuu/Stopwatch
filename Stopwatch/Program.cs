@@ -13,7 +13,7 @@ namespace StopWatch
     {
         static void Main(string[] args)
         {
-            StopWatch.PowerOn("Press 1 to start timer or 2 to stop",StopWatch.CreateStopwatch());
+            Menu.PowerOn("Press 1 to start timer or 2 to stop",StopWatch.CreateStopwatch());
 
         }
     }
