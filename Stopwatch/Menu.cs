@@ -100,7 +100,6 @@ namespace StopWatch
                 }
             } while (preventOverlap);
         }
-
         public static void Runtime()
         {
 
@@ -116,8 +115,6 @@ namespace StopWatch
                 }
             }
         }
-
-        public delegate void ThreadStart();
         public static void StopTimer()
         {
             StopWatch.TimeStop = DateTime.Now;
@@ -160,5 +157,7 @@ namespace StopWatch
 
             }
         }
+
+        public delegate void ThreadStart();
     }
 }
