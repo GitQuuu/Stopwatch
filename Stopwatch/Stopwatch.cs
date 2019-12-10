@@ -33,7 +33,7 @@ namespace StopWatch
                 switch (int.TryParse(Console.ReadLine(), out int value) ? value : 0)
                 {
                     case (int)Menu.PowerState.On:
-                        //stopwatch.StartTimer();
+                        stopwatch.StartTimer();
                         continue;
                     case (int)Menu.PowerState.Off:
                         stopwatch.StopTimer();
