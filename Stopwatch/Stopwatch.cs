@@ -4,7 +4,7 @@ using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace Stopwatch
+namespace StopWatch
 {
     public class StopWatch
     {
@@ -14,20 +14,21 @@ namespace Stopwatch
         public static DateTime TimeStop { get; private set; }
 
         // A method to instantiating new objects of the StopWatch class
-        public StopWatch CreateStopwatch()
+        public static StopWatch CreateStopwatch()
         {
             StopWatch stopwatchObject = new StopWatch();
-
+    
             return stopwatchObject;
         }
 
-        public void PowerOn()
+        // method to use the object 
+        public static void PowerOn(string question,StopWatch stopwatch)
         {
-            StopWatch stopwatch = new StopWatch();
+
             bool loopState = true;
             while (loopState)
             {
-                Console.WriteLine();
+                Console.WriteLine(question);
 
                 switch (int.TryParse(Console.ReadLine(), out int value) ? value : 0)
                 {
@@ -62,7 +63,7 @@ namespace Stopwatch
 
                             inputCheck = false;
                             powerOffState = true;
-                            PowerOn("Press 1 to start again and 2 to end program");
+                            //PowerOn("Press 1 to start again and 2 to end program");
 
                             break;
                         case (char)Menu.Choices.Yes:

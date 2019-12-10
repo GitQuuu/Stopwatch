@@ -7,14 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace Stopwatch
+namespace StopWatch
 {
     class Program
     {
         static void Main(string[] args)
         {
-            
-
+            StopWatch.PowerOn("Press 1 to start timer or 2 to stop",StopWatch.CreateStopwatch());
 
         }
     }
