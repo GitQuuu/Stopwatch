@@ -30,7 +30,7 @@ namespace StopWatch
             Console.WriteLine($"Stopwatch started at {TimeStart}\n");
 
 
-            Thread thread = new Thread(new System.Threading.ThreadStart(RuntimeInForeground()));
+            Thread thread = new Thread(new System.Threading.ThreadStart(RuntimeInForeground));
             thread.Start();
 
 
