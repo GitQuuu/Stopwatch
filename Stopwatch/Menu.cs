@@ -92,16 +92,12 @@ namespace StopWatch
                     {
                         case (char)Menu.Choices.No:
                             inputCheck = false;
-                            powerOffState = true;
+                            Console.Clear();
                             stopwatch.StartTimer();
-
-                            break;
+                            continue;
                         case (char)Menu.Choices.Yes:
-
-
                             inputCheck = false;
                             powerOffState = false;
-
                             break;
                         default:
                             Console.Write("Please select either y or n to continue program\n");
@@ -110,34 +106,6 @@ namespace StopWatch
 
                 }
 
-            }
-        }
-
-        public static void RuntimeInForeground()
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            {
-                Console.SetCursorPosition(0, 3);
-                Console.Write($"Thread Id: {Thread.CurrentThread.ManagedThreadId} \n" +
-                              $"State {Thread.CurrentThread.ThreadState} " +
-                              $"Priority: {Thread.CurrentThread.Priority}");
-
-                bool loopstate = true;
-
-                do
-                {
-                    Console.SetCursorPosition(0, 5);
-                    Console.Write($"Live runtime: {stopwatch.Elapsed} \n");
-                    Thread.Sleep(1000);
-
-                    if (Console.KeyAvailable)
-                    {
-                        loopstate = false;
-                    }
-                
-                } while (loopstate);
-
-                stopwatch.Stop();
             }
         }
     }
