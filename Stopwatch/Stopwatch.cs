@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -10,8 +11,8 @@ namespace StopWatch
     {
 
         public  TimeSpan Duration { get;  set; }   
-        public  DateTime TimeStart { get; set; }
-        public  DateTime TimeStop { get;  set; }
+        public static DateTime TimeStart { get; set; }
+        public static DateTime TimeStop { get;  set; }
 
         // A method to instantiating new objects of the StopWatch class
         public static StopWatch CreateStopwatch()
@@ -25,21 +26,21 @@ namespace StopWatch
         public  void StartTimer()
         {
             
-            this.TimeStart = DateTime.Now;
-            Console.WriteLine($"Stopwatch started at {this.TimeStart}\n");
-            Menu.Runtime();
+            TimeStart = DateTime.Now;
+            Console.WriteLine($"Stopwatch started at {TimeStart}\n");
 
 
-            //Thread secondThread = new Thread(new System.Threading.ThreadStart(Stopwatch.Runtime));
-            //secondThread.Start();
-            //Thread.Sleep(1000);
+            Thread thread = new Thread(new System.Threading.ThreadStart(Menu.RuntimeInForeground));
+            thread.Start();
+          
 
             bool preventOverlap;
             do
             {
+
                 if (Console.ReadLine() == "2")
                 {
-                    //secondThread.Join();
+                    thread.Join();
                     StopTimer();
                     Console.WriteLine($"Runtime is {this.Duration.TotalSeconds} seconds \n");
                     preventOverlap = false;
@@ -54,10 +55,11 @@ namespace StopWatch
     
         public  void StopTimer()
         {
-            this.TimeStop = DateTime.Now;
-            this.Duration = this.TimeStop - this.TimeStart;
-            TimeSpan elapsed = DateTime.Parse(this.TimeStop.ToString()).Subtract(DateTime.Parse(this.TimeStart.ToString()));
-            Console.WriteLine($"Stopwatch stop at {this.TimeStop} elapsed time {elapsed}\n");
+            
+            TimeStop = DateTime.Now;
+            this.Duration = TimeStop - TimeStart;
+            TimeSpan elapsed = DateTime.Parse(TimeStop.ToString()).Subtract(DateTime.Parse(TimeStart.ToString()));
+            Console.WriteLine($"Stopwatch stop at {TimeStop} elapsed time {elapsed}\n");
 
         }
 

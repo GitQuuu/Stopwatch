@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -60,7 +62,6 @@ namespace StopWatch
                 switch (Int32.TryParse(Console.ReadLine(), out int value) ? value : 0)
                 {
                     case (int)Menu.PowerState.On:
-                        Console.Clear();
                         stopwatch.StartTimer();
                         continue;
                     case (int)Menu.PowerState.Off:
@@ -75,7 +76,7 @@ namespace StopWatch
 
             }
 
-            PowerOff("Pres y to exit",stopwatch);
+            PowerOff("Pres y/n",stopwatch);
         }
 
         public static void PowerOff(string actions, StopWatch stopwatch)
@@ -90,7 +91,6 @@ namespace StopWatch
                     switch (Char.TryParse(Console.ReadLine(), out char yesOrNo) ? yesOrNo : default)
                     {
                         case (char)Menu.Choices.No:
-
                             inputCheck = false;
                             powerOffState = true;
                             stopwatch.StartTimer();
@@ -113,19 +113,31 @@ namespace StopWatch
             }
         }
 
-        public static void Runtime()
+        public static void RuntimeInForeground()
         {
-
-            for (int liveRuntime = 1; liveRuntime > 0; liveRuntime++)
+            Stopwatch stopwatch = Stopwatch.StartNew();
             {
                 Console.SetCursorPosition(0, 3);
-                Console.Write($"Live runtime 2 thread: {liveRuntime} \n");
-                Thread.Sleep(1000);
+                Console.Write($"Thread Id: {Thread.CurrentThread.ManagedThreadId} \n" +
+                              $"State {Thread.CurrentThread.ThreadState} " +
+                              $"Priority: {Thread.CurrentThread.Priority}");
 
-                if (Console.KeyAvailable)
+                bool loopstate = true;
+
+                do
                 {
-                    break;
-                }
+                    Console.SetCursorPosition(0, 5);
+                    Console.Write($"Live runtime: {stopwatch.Elapsed} \n");
+                    Thread.Sleep(1000);
+
+                    if (Console.KeyAvailable)
+                    {
+                        loopstate = false;
+                    }
+                
+                } while (loopstate);
+
+                stopwatch.Stop();
             }
         }
     }
