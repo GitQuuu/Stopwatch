@@ -49,7 +49,7 @@ namespace StopWatch
 
             return stopwatch;
         }
-        public static StopWatch PowerOn(string question, StopWatch stopwatch)
+        public static void PowerOn(string question, StopWatch stopwatch)
         {
 
             bool loopState = true;
@@ -74,7 +74,7 @@ namespace StopWatch
 
             }
 
-            return stopwatch;
+            PowerOff("Pres y to exit",stopwatch);
         }
 
         public static void PowerOff(string actions, StopWatch stopwatch)

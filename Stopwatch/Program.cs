@@ -14,9 +14,7 @@ namespace StopWatch
         static void Main(string[] args)
         {
 
-          
-            Menu.PowerOff("Pres y to exit",Menu.PowerOn("Press 1 to start watch or 2 to stop", StopWatch.CreateStopwatch()));
-           
+            Menu.PowerOn("Press 1 to start watch or 2 to stop", StopWatch.CreateStopwatch());
             
         }
     }
