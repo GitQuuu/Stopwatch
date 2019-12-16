@@ -38,7 +38,7 @@ namespace StopWatch
                         stopwatch.StartTimer();
                         continue;
                     case (int)PowerState.Off:
-                        stopwatch.StopTimer();
+                        StopWatch.StopTimer();
                         Console.Write("Are you sure? ");
                         loopState = false;
                         break;
@@ -63,9 +63,9 @@ namespace StopWatch
                 {
                     case (int)Menu.PowerState.On:
                         stopwatch.StartTimer();
-                        continue;
+                        break;
                     case (int)Menu.PowerState.Off:
-                        stopwatch.StopTimer();
+                        StopWatch.StopTimer();
                         Console.Write("Are you sure? ");
                         loopState = false;
                         break;

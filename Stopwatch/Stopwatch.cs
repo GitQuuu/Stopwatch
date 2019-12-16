@@ -32,27 +32,28 @@ namespace StopWatch
 
             Thread thread = new Thread(new System.Threading.ThreadStart(RuntimeInForeground));
             thread.Start();
+            thread.Join();
+
+            //bool preventOverlap = true;
+            //do
+            //{
+
+            //    if (Console.ReadLine() == "2")
+            //    {
+            //        thread.Join();
+            //        preventOverlap = false;
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Please stop the watch before starting a new instance");
+
+            //    }
+            //} while (preventOverlap);
 
 
-            bool preventOverlap;
-            do
-            {
-
-                if (Console.ReadLine() == "2")
-                {
-                    StopTimer();
-                    thread.Join();
-                    preventOverlap = false;
-                }
-                else
-                {
-                    Console.WriteLine("Please stop the watch before starting a new instance");
-                    preventOverlap = true;
-                }
-            } while (preventOverlap);
         }
     
-        public  void StopTimer()
+        public static void StopTimer()
         {
             
             TimeStop = DateTime.Now;
@@ -66,8 +67,8 @@ namespace StopWatch
         {
             System.Diagnostics.Stopwatch stopwatch = Stopwatch.StartNew();
 
-            Console.SetCursorPosition(0, 3);
-            Console.Write($"Thread Id: {Thread.CurrentThread.ManagedThreadId} \n" +
+           
+            Console.Write($"Thread Id: {Thread.CurrentThread.ManagedThreadId} " +
                           $"State: {Thread.CurrentThread.ThreadState} " +
                           $"Priority: {Thread.CurrentThread.Priority}");
 
@@ -75,19 +76,19 @@ namespace StopWatch
             do
             {
                 Console.SetCursorPosition(0, 5);
-                Console.Write($"Live runtime: {stopwatch.Elapsed} \n");
+                Console.Write($"Live runtime: {stopwatch.Elapsed}\n");
                 Thread.Sleep(1000);
 
                 if (Console.KeyAvailable)
                 {
+                    stopwatch.Stop();
+                    StopWatch.StopTimer();
                     keyPress = false;
                 }
 
             } while (keyPress);
-               
-            
 
-            stopwatch.Stop();
+            
         }
 
         public delegate void ThreadStart();
