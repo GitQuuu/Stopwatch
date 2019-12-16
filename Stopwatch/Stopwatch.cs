@@ -38,7 +38,7 @@ namespace StopWatch
     
         public static void StopTimer()
         {
-            TimeStop = DateTime.Now;
+            
             Console.WriteLine($"Stopwatch stop at {TimeStop} elapsed time {Duration}\n");
 
         }
@@ -65,6 +65,7 @@ namespace StopWatch
                
                 if (Console.KeyAvailable)
                 {
+                    TimeStop = DateTime.Now;
                     stopwatch.Stop();
                     keyPress = false;
                 }
