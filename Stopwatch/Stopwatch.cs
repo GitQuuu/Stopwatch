@@ -56,7 +56,7 @@ namespace StopWatch
             bool keyPress = true;
             do
             {
-                Console.SetCursorPosition(0, 6);
+                Console.SetCursorPosition(50, 7);
                 Console.Write($"Stopwatch timer: {stopwatch.Elapsed.TotalSeconds} seconds\n");
 
                 Duration = stopwatch.Elapsed;
@@ -71,7 +71,7 @@ namespace StopWatch
                 }
 
             } while (keyPress);
-
+            
         }
 
         public delegate void ThreadStart();

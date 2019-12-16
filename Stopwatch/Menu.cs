@@ -76,7 +76,7 @@ namespace StopWatch
 
             }
 
-            PowerOff("Pres y/n",stopwatch);
+            PowerOff("Pres y to exit and n to continue",stopwatch);
         }
 
         public static void PowerOff(string actions, StopWatch stopwatch)
