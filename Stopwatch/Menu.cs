@@ -63,7 +63,7 @@ namespace StopWatch
                 {
                     case (int)Menu.PowerState.On:
                         stopwatch.StartTimer();
-                        break;
+                        continue;
                     case (int)Menu.PowerState.Off:
                         StopWatch.StopTimer();
                         Console.Write("Are you sure? ");
@@ -98,6 +98,7 @@ namespace StopWatch
                         case (char)Menu.Choices.Yes:
                             inputCheck = false;
                             powerOffState = false;
+                            Console.Clear();
                             break;
                         default:
                             Console.Write("Please select either y or n to continue program\n");
