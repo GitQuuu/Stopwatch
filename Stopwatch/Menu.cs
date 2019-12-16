@@ -101,7 +101,7 @@ namespace StopWatch
                             Console.Clear();
                             break;
                         default:
-                            Console.Write("Please select either y or n to continue program\n");
+                            Console.Write("Exit y or n to continue program\n");
                             break;
                     }
 
