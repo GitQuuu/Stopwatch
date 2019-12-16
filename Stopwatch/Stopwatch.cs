@@ -39,7 +39,6 @@ namespace StopWatch
         public static void StopTimer()
         {
             TimeStop = DateTime.Now;
-            TimeSpan elapsed = DateTime.Parse(TimeStop.ToString()).Subtract(DateTime.Parse(TimeStart.ToString()));
             Console.WriteLine($"Stopwatch stop at {TimeStop} elapsed time {Duration}\n");
 
         }
