@@ -57,7 +57,7 @@ namespace StopWatch
         {
             TimeStop = DateTime.Now;
             TimeSpan elapsed = DateTime.Parse(TimeStop.ToString()).Subtract(DateTime.Parse(TimeStart.ToString()));
-            Console.WriteLine($"Stopwatch stop at {TimeStop} elapsed time {Duration.TotalSeconds}\n");
+            Console.WriteLine($"Stopwatch stop at {TimeStop} elapsed time {Duration}\n");
 
         }
 
@@ -67,14 +67,15 @@ namespace StopWatch
 
             Console.Write($"Thread Id: {Thread.CurrentThread.ManagedThreadId} " +
                           $"State: {Thread.CurrentThread.ThreadState} " +
-                          $"Priority: {Thread.CurrentThread.Priority}");
+                          $"Priority: {Thread.CurrentThread.Priority}\n");
+
+            Console.WriteLine("Press any key to stop the live runtime");
 
             bool keyPress = true;
             do
             {
-                Console.WriteLine("Press any key to stop the live runtime");
-                Console.SetCursorPosition(0, 5);
-                Console.Write($"Live runtime: {stopwatch.Elapsed.TotalSeconds}\n");
+                Console.SetCursorPosition(0, 6);
+                Console.Write($"Live runtime: {stopwatch.Elapsed.Seconds}\n");
 
                 Duration = stopwatch.Elapsed;
                 Thread.Sleep(1000);

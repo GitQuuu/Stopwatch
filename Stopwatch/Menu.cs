@@ -66,7 +66,7 @@ namespace StopWatch
                         continue;
                     case (int)Menu.PowerState.Off:
                         StopWatch.StopTimer();
-                        Console.Write("Are you sure? ");
+                        Console.Write("Shutdown? ");
                         loopState = false;
                         break;
                     default:
