@@ -33,23 +33,6 @@ namespace StopWatch
             Thread thread = new Thread(new System.Threading.ThreadStart(RuntimeInForeground));
             thread.Start();
 
-
-            //bool preventOverlap = true;
-            //do
-            //{
-
-            //    if (Console.ReadLine() == "2")
-            //    {
-            //       
-            //        preventOverlap = false;
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Please stop the watch before starting a new instance");
-
-            //    }
-            //} while (preventOverlap);
-
             thread.Join();
         }
     
