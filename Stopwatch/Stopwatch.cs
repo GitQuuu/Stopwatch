@@ -57,7 +57,7 @@ namespace StopWatch
             do
             {
                 Console.SetCursorPosition(0, 6);
-                Console.Write($"Live runtime: {stopwatch.Elapsed.Seconds}\n");
+                Console.Write($"Stopwatch timer: {stopwatch.Elapsed.TotalSeconds} seconds\n");
 
                 Duration = stopwatch.Elapsed;
                 Thread.Sleep(1000);
